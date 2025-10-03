@@ -1,32 +1,21 @@
 package model;
 
-public class Transaksi {
-    private Kendaraan kendaraan;
+public class Transaksi implements CetakData {
     private Penyewa penyewa;
-    private int lamaSewa; // hari
+    private Kendaraan kendaraan;
+    private int lamaSewa;
+    private int totalBiaya;
 
-    public Transaksi(Kendaraan kendaraan, Penyewa penyewa, int lamaSewa) {
-        this.kendaraan = kendaraan;
+    public Transaksi(Penyewa penyewa, Kendaraan kendaraan, int lamaSewa) {
         this.penyewa = penyewa;
+        this.kendaraan = kendaraan;
         this.lamaSewa = lamaSewa;
+        this.totalBiaya = kendaraan.getHargaSewa() * lamaSewa;
     }
 
-    public int hitungTotal() {
-        return kendaraan.getHargaPerHari() * lamaSewa;
-    }
-
-public void tampilkanData() {
-    System.out.printf("| %-20s | %-10s | %-15s | %3d hari | Rp%-10d |\n",
-        penyewa.NamaPenyewa(), kendaraan.getNopol(), kendaraan.getMerk(),
-        lamaSewa, hitungTotal()
-    );
-}
-
-
-    public Kendaraan getKendaraan() { 
-        return kendaraan; 
-    }
-    public Penyewa getPenyewa() { 
-        return penyewa; 
+    @Override
+    public void tampilkanData() {
+        System.out.printf("| %-15s | %-10s | %5d hari | Rp%-10d |\n",
+                penyewa.getNama(), kendaraan.getNopol(), lamaSewa, totalBiaya);
     }
 }

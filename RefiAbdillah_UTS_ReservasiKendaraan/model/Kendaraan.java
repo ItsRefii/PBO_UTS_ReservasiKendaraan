@@ -1,30 +1,28 @@
 package model;
 
-public class Kendaraan {
+public class Kendaraan implements CetakData {
     private String nopol;
     private String merk;
-    private int hargaPerHari;
+    private String tipe;
+    private int hargaSewa;
 
-    public Kendaraan(String nopol, String merk, int hargaPerHari) {
+    public Kendaraan(String nopol, String merk, String tipe, int hargaSewa) {
         this.nopol = nopol;
         this.merk = merk;
-        this.hargaPerHari = hargaPerHari;
+        this.tipe = tipe;
+        this.hargaSewa = hargaSewa;
     }
 
-    public String getNopol() { 
-        return nopol; 
-    }
-    public String getMerk() { 
-        return merk; 
-    }
-    }
-    public void setTersedia(boolean tersedia) { 
-        this.tersedia = tersedia; 
+    public String getNopol() {
+        return nopol;
     }
 
+    public int getHargaSewa() {
+        return hargaSewa;
+    }
+
+    @Override
     public void tampilkanData() {
-        System.out.printf("| %-10s | %-15s | Rp%-10d |\n", nopol, merk, hargaPerHari);
+        System.out.printf("| %-10s | %-15s | %-15s | Rp%-10d |\n", nopol, merk, tipe, hargaSewa);
     }
-
 }
-
