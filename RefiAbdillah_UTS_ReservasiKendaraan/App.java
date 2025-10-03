@@ -37,7 +37,7 @@ public class App {
                     input.nextLine();
 
                     daftarKendaraan.add(new Kendaraan(nopol, merk, harga));
-                    System.out.println("✅ Data kendaraan berhasil ditambahkan!");
+                    System.out.println("Data kendaraan berhasil ditambahkan!");
                     break;
 
                 case 2:
@@ -48,12 +48,12 @@ public class App {
                     String ktp = input.nextLine();
 
                     daftarPenyewa.add(new Penyewa(nama, ktp));
-                    System.out.println("✅ Data penyewa berhasil ditambahkan!");
+                    System.out.println("Data penyewa berhasil ditambahkan!");
                     break;
 
                 case 3:
                     if (daftarKendaraan.isEmpty() || daftarPenyewa.isEmpty()) {
-                        System.out.println("❌ Data kendaraan atau penyewa belum ada!");
+                        System.out.println("Data kendaraan atau penyewa belum ada!");
                     } else {
                         System.out.println("\n--- Form Penyewaan ---");
 
@@ -68,7 +68,7 @@ public class App {
                             }
                         }
                         if (pilihKendaraan == null) {
-                            System.out.println("❌ Kendaraan dengan nopol itu tidak ditemukan!");
+                            System.out.println("Kendaraan dengan nopol itu tidak ditemukan!");
                             break;
                         }
 
@@ -94,7 +94,7 @@ public class App {
 
                         Transaksi t = new Transaksi(pilihKendaraan, pilihPenyewa, lama);
                         daftarTransaksi.add(t);
-                        System.out.println("✅ Penyewaan berhasil dicatat!");
+                        System.out.println("Penyewaan berhasil dicatat!");
                     }
                     break;
 
@@ -157,3 +157,4 @@ public class App {
         input.close();
     }
 }
+
