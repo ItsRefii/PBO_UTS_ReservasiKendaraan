@@ -6,7 +6,6 @@ public class App {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // penampungan data
         ArrayList<Kendaraan> daftarKendaraan = new ArrayList<>();
         ArrayList<Penyewa> daftarPenyewa = new ArrayList<>();
         ArrayList<Transaksi> daftarTransaksi = new ArrayList<>();
@@ -18,10 +17,10 @@ public class App {
             System.out.println("1. Tambah Data Kendaraan");
             System.out.println("2. Tambah Data Penyewa");
             System.out.println("3. Catat Penyewaan");
-            System.out.println("4. Keluar");
-            System.out.println("5. Tampilkan Semua Kendaraan");
-            System.out.println("6. Tampilkan Semua Penyewa");
-            System.out.println("7. Tampilkan Riwayat Penyewaan");
+            System.out.println("4. Lihat Daftar Kendaraan");
+            System.out.println("5. Lihat Daftar Penyewa");
+            System.out.println("6. Lihat Riwayat Penyewaan");
+            System.out.println("7. Keluar");
             System.out.print("Pilih menu: ");
             pilihan = input.nextInt();
             input.nextLine();
@@ -38,7 +37,7 @@ public class App {
                     input.nextLine();
 
                     daftarKendaraan.add(new Kendaraan(nopol, merk, harga));
-                    System.out.println("Data kendaraan berhasil ditambahkan!");
+                    System.out.println("✅ Data kendaraan berhasil ditambahkan!");
                     break;
 
                 case 2:
@@ -49,57 +48,57 @@ public class App {
                     String ktp = input.nextLine();
 
                     daftarPenyewa.add(new Penyewa(nama, ktp));
-                    System.out.println("Data penyewa berhasil ditambahkan!");
+                    System.out.println("✅ Data penyewa berhasil ditambahkan!");
                     break;
 
-            case 3:
-                if (daftarKendaraan.isEmpty() || daftarPenyewa.isEmpty()) {
-                    System.out.println("Data kendaraan atau penyewa belum ada!");
-                } else {
-                    System.out.println("\n--- Form Penyewaan ---");
+                case 3:
+                    if (daftarKendaraan.isEmpty() || daftarPenyewa.isEmpty()) {
+                        System.out.println("❌ Data kendaraan atau penyewa belum ada!");
+                    } else {
+                        System.out.println("\n--- Form Penyewaan ---");
 
-                    System.out.print("Masukkan nomor polisi kendaraan: ");
-                    String cariNopol = input.nextLine();
-                    Kendaraan pilihKendaraan = null;
-                    for (Kendaraan k : daftarKendaraan) {
-                        if (k.getNopol().equalsIgnoreCase(cariNopol)) {
-                            pilihKendaraan = k;
+                        // cari kendaraan berdasarkan nopol
+                        System.out.print("Masukkan nomor polisi kendaraan: ");
+                        String cariNopol = input.nextLine();
+                        Kendaraan pilihKendaraan = null;
+                        for (Kendaraan k : daftarKendaraan) {
+                            if (k.getNopol().equalsIgnoreCase(cariNopol)) {
+                                pilihKendaraan = k;
+                                break;
+                            }
+                        }
+                        if (pilihKendaraan == null) {
+                            System.out.println("❌ Kendaraan dengan nopol itu tidak ditemukan!");
                             break;
                         }
-                    }
 
-                    if (pilihKendaraan == null) {
-                        System.out.println(" Kendaraan dengan nopol itu tidak ditemukan!");
-                        break;
-                    }
-
-                    System.out.print("Masukkan nomor KTP atau nama penyewa: ");
-                    String cariPenyewa = input.nextLine();
-                    Penyewa pilihPenyewa = null;
-                    for (Penyewa p : daftarPenyewa) {
-                        if (p.KtpPenyewa().equalsIgnoreCase(cariPenyewa) || p.NamaPenyewa().equalsIgnoreCase(cariPenyewa)) {
-                            pilihPenyewa = p;
+                        // cari penyewa berdasarkan KTP atau nama
+                        System.out.print("Masukkan nomor KTP atau nama penyewa: ");
+                        String cariPenyewa = input.nextLine();
+                        Penyewa pilihPenyewa = null;
+                        for (Penyewa p : daftarPenyewa) {
+                            if (p.KtpPenyewa().equalsIgnoreCase(cariPenyewa) ||
+                                p.NamaPenyewa().equalsIgnoreCase(cariPenyewa)) {
+                                pilihPenyewa = p;
+                                break;
+                            }
+                        }
+                        if (pilihPenyewa == null) {
+                            System.out.println(" Penyewa tidak ditemukan!");
                             break;
                         }
+
+                        System.out.print("Masukkan lama sewa (hari): ");
+                        int lama = input.nextInt();
+                        input.nextLine();
+
+                        Transaksi t = new Transaksi(pilihKendaraan, pilihPenyewa, lama);
+                        daftarTransaksi.add(t);
+                        System.out.println("✅ Penyewaan berhasil dicatat!");
                     }
+                    break;
 
-                    if (pilihPenyewa == null) {
-                        System.out.println(" Penyewa tidak ditemukan!");
-                        break;
-                    }
-
-                    System.out.print("Masukkan lama sewa (hari): ");
-                    int lama = input.nextInt();
-                    input.nextLine();
-
-                    Transaksi t = new Transaksi(pilihKendaraan, pilihPenyewa, lama);
-                    daftarTransaksi.add(t);
-                    System.out.println("Penyewaan berhasil dicatat!");
-                }
-                break;
-
-
-                case 5:
+                case 4:
                     if (daftarKendaraan.isEmpty()) {
                         System.out.println("Belum ada kendaraan!");
                     } else {
@@ -114,7 +113,7 @@ public class App {
                     }
                     break;
 
-                case 6:
+                case 5:
                     if (daftarPenyewa.isEmpty()) {
                         System.out.println("Belum ada penyewa!");
                     } else {
@@ -129,7 +128,7 @@ public class App {
                     }
                     break;
 
-                case 7:
+                case 6:
                     if (daftarTransaksi.isEmpty()) {
                         System.out.println("Belum ada transaksi!");
                     } else {
@@ -144,7 +143,7 @@ public class App {
                     }
                     break;
 
-                case 4:
+                case 7:
                     System.out.println("Keluar dari program...");
                     break;
 
@@ -153,7 +152,7 @@ public class App {
                     break;
             }
 
-        } while (pilihan != 4);
+        } while (pilihan != 7);
 
         input.close();
     }
