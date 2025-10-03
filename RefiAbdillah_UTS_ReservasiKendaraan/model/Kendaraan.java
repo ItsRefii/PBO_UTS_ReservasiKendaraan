@@ -4,13 +4,11 @@ public class Kendaraan {
     private String nopol;
     private String merk;
     private int hargaPerHari;
-    private boolean tersedia;
 
     public Kendaraan(String nopol, String merk, int hargaPerHari) {
         this.nopol = nopol;
         this.merk = merk;
         this.hargaPerHari = hargaPerHari;
-        this.tersedia = true;
     }
 
     public String getNopol() { 
@@ -19,11 +17,6 @@ public class Kendaraan {
     public String getMerk() { 
         return merk; 
     }
-    public int getHargaPerHari() { 
-        return hargaPerHari; 
-    }
-    public boolean isTersedia() { 
-        return tersedia; 
     }
     public void setTersedia(boolean tersedia) { 
         this.tersedia = tersedia; 
@@ -34,3 +27,4 @@ public class Kendaraan {
     }
 
 }
+
